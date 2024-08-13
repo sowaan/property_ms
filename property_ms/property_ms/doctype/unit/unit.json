@@ -1,0 +1,373 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "UNT-.#####",
+ "creation": "2023-12-06 18:21:34.314039",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "property",
+  "unit_number",
+  "annual_rent_amount",
+  "enter_meter_price",
+  "column_break_hot9",
+  "unit_type",
+  "electricity_meter_number",
+  "apartment_number",
+  "rented",
+  "advanced_details_tab",
+  "floor_number",
+  "bathrooms_count",
+  "district",
+  "north_piece_length",
+  "south_piece_length",
+  "east_piece_length",
+  "west_piece_length",
+  "entrances_count",
+  "unit_activity",
+  "water_meter_number",
+  "finishing_status",
+  "ground_floor_area",
+  "entrance_type",
+  "split_conditioner_count",
+  "sitting_rooms_count",
+  "halls_count",
+  "sleeping_rooms_count",
+  "other_features",
+  "is_yard_exist",
+  "is_composite_kitchen_exist",
+  "is_car_entrance_exist",
+  "column_break_mcen",
+  "planned_number",
+  "north_piece_number",
+  "south_piece_number",
+  "east_piece_number",
+  "west_piece_number",
+  "unit_description",
+  "number_of_rooms",
+  "number_of_bathrooms",
+  "unit_form",
+  "unit_area",
+  "plate_number",
+  "mezzanine_area",
+  "minimal_rental_price",
+  "minimal_price__meter",
+  "key_number",
+  "window_conditioner_count",
+  "kitchens_count",
+  "commission_amount",
+  "commission_type",
+  "commission_vat"
+ ],
+ "fields": [
+  {
+   "fieldname": "property",
+   "fieldtype": "Link",
+   "label": "Property",
+   "options": "Properties",
+   "reqd": 1
+  },
+  {
+   "fieldname": "unit_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Unit Number",
+   "reqd": 1
+  },
+  {
+   "fieldname": "annual_rent_amount",
+   "fieldtype": "Float",
+   "label": "Annual Rent Amount"
+  },
+  {
+   "fieldname": "enter_meter_price",
+   "fieldtype": "Float",
+   "label": "Enter Meter Price"
+  },
+  {
+   "fieldname": "column_break_hot9",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "unit_type",
+   "fieldtype": "Link",
+   "label": "Unit Type",
+   "options": "Type of Unit"
+  },
+  {
+   "fieldname": "electricity_meter_number",
+   "fieldtype": "Data",
+   "label": "Electricity Meter Number"
+  },
+  {
+   "fieldname": "apartment_number",
+   "fieldtype": "Data",
+   "label": "Apartment Number"
+  },
+  {
+   "fieldname": "advanced_details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Advanced Details"
+  },
+  {
+   "fieldname": "floor_number",
+   "fieldtype": "Data",
+   "label": "Floor Number"
+  },
+  {
+   "fieldname": "bathrooms_count",
+   "fieldtype": "Data",
+   "label": "Bathrooms Count"
+  },
+  {
+   "fieldname": "district",
+   "fieldtype": "Long Text",
+   "label": "District",
+   "max_height": "60px"
+  },
+  {
+   "fieldname": "north_piece_length",
+   "fieldtype": "Long Text",
+   "label": "North Piece Length",
+   "max_height": "60px"
+  },
+  {
+   "fieldname": "south_piece_length",
+   "fieldtype": "Long Text",
+   "label": "South Piece Length",
+   "max_height": "60px"
+  },
+  {
+   "fieldname": "east_piece_length",
+   "fieldtype": "Long Text",
+   "label": "East Piece Length",
+   "max_height": "60px"
+  },
+  {
+   "fieldname": "west_piece_length",
+   "fieldtype": "Long Text",
+   "label": "West Piece Length",
+   "max_height": "60px"
+  },
+  {
+   "fieldname": "entrances_count",
+   "fieldtype": "Int",
+   "label": "Entrances Count"
+  },
+  {
+   "fieldname": "unit_activity",
+   "fieldtype": "Data",
+   "label": "Unit Activity"
+  },
+  {
+   "fieldname": "water_meter_number",
+   "fieldtype": "Data",
+   "label": "Water Meter Number"
+  },
+  {
+   "fieldname": "finishing_status",
+   "fieldtype": "Select",
+   "label": "Finishing Status",
+   "options": "Standard\nAir Conditioned\nFurnished and Air Conditioned"
+  },
+  {
+   "fieldname": "ground_floor_area",
+   "fieldtype": "Data",
+   "label": "Ground Floor Area"
+  },
+  {
+   "fieldname": "entrance_type",
+   "fieldtype": "Select",
+   "label": "Entrance Type",
+   "options": "Special\nMutual"
+  },
+  {
+   "fieldname": "split_conditioner_count",
+   "fieldtype": "Int",
+   "label": "Split Conditioner Count"
+  },
+  {
+   "fieldname": "sitting_rooms_count",
+   "fieldtype": "Int",
+   "label": "Sitting Rooms Count"
+  },
+  {
+   "fieldname": "halls_count",
+   "fieldtype": "Int",
+   "label": "Halls Count"
+  },
+  {
+   "fieldname": "sleeping_rooms_count",
+   "fieldtype": "Int",
+   "label": "Sleeping Rooms Count"
+  },
+  {
+   "fieldname": "other_features",
+   "fieldtype": "Long Text",
+   "label": "Other Features",
+   "max_height": "60px"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_yard_exist",
+   "fieldtype": "Check",
+   "label": "Is Yard Exist"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_composite_kitchen_exist",
+   "fieldtype": "Check",
+   "label": "Is Composite Kitchen Exist"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_car_entrance_exist",
+   "fieldtype": "Check",
+   "label": "Is Car Entrance Exist"
+  },
+  {
+   "default": "0",
+   "fieldname": "commission_vat",
+   "fieldtype": "Check",
+   "label": "Commission vat"
+  },
+  {
+   "fieldname": "column_break_mcen",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "planned_number",
+   "fieldtype": "Long Text",
+   "label": "Planned Number",
+   "max_height": "60px"
+  },
+  {
+   "fieldname": "north_piece_number",
+   "fieldtype": "Long Text",
+   "label": "North Piece Number",
+   "max_height": "60px"
+  },
+  {
+   "fieldname": "south_piece_number",
+   "fieldtype": "Long Text",
+   "label": "South Piece Number",
+   "max_height": "60px"
+  },
+  {
+   "fieldname": "east_piece_number",
+   "fieldtype": "Long Text",
+   "label": "East Piece Number",
+   "max_height": "60px"
+  },
+  {
+   "fieldname": "west_piece_number",
+   "fieldtype": "Long Text",
+   "label": "West Piece Number",
+   "max_height": "60px"
+  },
+  {
+   "fieldname": "unit_description",
+   "fieldtype": "Select",
+   "label": "Unit Description",
+   "options": "For Families\nFor Single\nCommercial"
+  },
+  {
+   "fieldname": "number_of_rooms",
+   "fieldtype": "Int",
+   "label": "Number of Rooms"
+  },
+  {
+   "fieldname": "number_of_bathrooms",
+   "fieldtype": "Int",
+   "label": "Number of Bathrooms"
+  },
+  {
+   "fieldname": "unit_form",
+   "fieldtype": "Data",
+   "label": "Unit Form"
+  },
+  {
+   "fieldname": "unit_area",
+   "fieldtype": "Data",
+   "label": "Unit Area"
+  },
+  {
+   "fieldname": "plate_number",
+   "fieldtype": "Data",
+   "label": "Plate Number"
+  },
+  {
+   "fieldname": "mezzanine_area",
+   "fieldtype": "Data",
+   "label": "Mezzanine Area"
+  },
+  {
+   "fieldname": "minimal_rental_price",
+   "fieldtype": "Float",
+   "label": "Minimal Rental Price"
+  },
+  {
+   "fieldname": "minimal_price__meter",
+   "fieldtype": "Float",
+   "label": "Minimal Price / Meter"
+  },
+  {
+   "fieldname": "key_number",
+   "fieldtype": "Data",
+   "label": "Key Number"
+  },
+  {
+   "fieldname": "window_conditioner_count",
+   "fieldtype": "Int",
+   "label": "Window Conditioner Count"
+  },
+  {
+   "fieldname": "kitchens_count",
+   "fieldtype": "Int",
+   "label": "Kitchens Count"
+  },
+  {
+   "fieldname": "commission_amount",
+   "fieldtype": "Int",
+   "label": "Commission Amount"
+  },
+  {
+   "fieldname": "commission_type",
+   "fieldtype": "Select",
+   "label": "Commission Type",
+   "options": "Per each Payment\nYearly\nHalf Yearly\nQuarterly"
+  },
+  {
+   "default": "0",
+   "fieldname": "rented",
+   "fieldtype": "Check",
+   "label": "Rented"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-01-09 15:09:10.921820",
+ "modified_by": "Administrator",
+ "module": "Property MS",
+ "name": "Unit",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "unit_number",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,324 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "LAS-.#####",
+ "creation": "2023-12-06 14:34:50.454120",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "contract_type",
+  "contract_number",
+  "rent",
+  "rent_start_date",
+  "renter",
+  "column_break_64ij",
+  "company",
+  "writing_date",
+  "rent_end_date",
+  "grace_period",
+  "migrate_to_accounts",
+  "choose_units_section",
+  "property_type",
+  "column_break_vmn0",
+  "property_name",
+  "section_break_9njr",
+  "choose_units",
+  "property_ownership",
+  "terms_tab",
+  "terms",
+  "terms_details",
+  "taxe_tab",
+  "taxes_and_charges",
+  "taxes",
+  "amended_from",
+  "ex_tax_on_add_char",
+  "payments_scheduling_tab",
+  "duration",
+  "type",
+  "item",
+  "column_break_wjmn",
+  "annual_raise",
+  "annual_raise_amount",
+  "section_break_cvj4",
+  "payments_scheduling",
+  "expenses_section",
+  "insur_payment",
+  "maint_ser_pay",
+  "column_break_kikg",
+  "elec_payment",
+  "wtr_payment"
+ ],
+ "fields": [
+  {
+   "fieldname": "contract_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Contract Number",
+   "reqd": 1
+  },
+  {
+   "fieldname": "rent",
+   "fieldtype": "Data",
+   "label": "Contract documentation number (rent)"
+  },
+  {
+   "fieldname": "rent_start_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Rent Start Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "renter",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Renter",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "writing_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Writing Date",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "migrate_to_accounts",
+   "fieldtype": "Check",
+   "label": "Migrate to Accounts"
+  },
+  {
+   "fieldname": "choose_units_section",
+   "fieldtype": "Section Break",
+   "label": "Choose Units"
+  },
+  {
+   "fieldname": "property_name",
+   "fieldtype": "Link",
+   "label": "Property Name",
+   "options": "Properties"
+  },
+  {
+   "fieldname": "payments_scheduling_tab",
+   "fieldtype": "Tab Break",
+   "label": "Payments Scheduling"
+  },
+  {
+   "fieldname": "duration",
+   "fieldtype": "Int",
+   "label": "Duration",
+   "reqd": 1
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "label": "Type",
+   "options": "Monthly\nQuarterly\nHalf Yearly\nAnnually"
+  },
+  {
+   "fieldname": "annual_raise",
+   "fieldtype": "Select",
+   "label": "Annual Raise",
+   "options": "Annual regular\nAnnual irregular"
+  },
+  {
+   "depends_on": "eval:doc.annual_raise == \"Annual regular\"",
+   "fieldname": "annual_raise_amount",
+   "fieldtype": "Data",
+   "label": "Annual Raise Amount"
+  },
+  {
+   "fieldname": "expenses_section",
+   "fieldtype": "Section Break",
+   "label": "Expenses"
+  },
+  {
+   "fieldname": "column_break_kikg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_64ij",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_vmn0",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_wjmn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "property_type",
+   "fieldtype": "Link",
+   "label": "Property Type",
+   "options": "Properties Type"
+  },
+  {
+   "fieldname": "taxe_tab",
+   "fieldtype": "Tab Break",
+   "label": "Taxes"
+  },
+  {
+   "fieldname": "section_break_cvj4",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "payments_scheduling",
+   "fieldtype": "Table",
+   "label": "Payments Scheduling",
+   "options": "Payments Scheduling"
+  },
+  {
+   "fieldname": "section_break_9njr",
+   "fieldtype": "Section Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "choose_units",
+   "fieldtype": "Table",
+   "label": "Choose Units",
+   "options": "Choose Units"
+  },
+  {
+   "fieldname": "taxes_and_charges",
+   "fieldtype": "Link",
+   "label": "Sales Taxes and Charges Template",
+   "options": "Sales Taxes and Charges Template"
+  },
+  {
+   "fieldname": "taxes",
+   "fieldtype": "Table",
+   "label": "Sales Taxes and Charges",
+   "options": "Sales Taxes and Charges"
+  },
+  {
+   "fieldname": "rent_end_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Rent End Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "contract_type",
+   "fieldtype": "Select",
+   "label": "Contract Type",
+   "options": "New\nRenew",
+   "reqd": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Lease",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "terms",
+   "fieldtype": "Link",
+   "label": "Terms",
+   "options": "Terms and Conditions"
+  },
+  {
+   "fieldname": "terms_tab",
+   "fieldtype": "Tab Break",
+   "label": "Terms"
+  },
+  {
+   "fetch_from": "terms.terms",
+   "fieldname": "terms_details",
+   "fieldtype": "Text Editor",
+   "label": "Terms and Conditions Details"
+  },
+  {
+   "default": "0",
+   "fieldname": "insur_payment",
+   "fieldtype": "Float",
+   "label": "Insurance Payment"
+  },
+  {
+   "default": "0",
+   "fieldname": "maint_ser_pay",
+   "fieldtype": "Float",
+   "label": "Maintenance Services Payment"
+  },
+  {
+   "default": "0",
+   "fieldname": "elec_payment",
+   "fieldtype": "Float",
+   "label": "Electricity Payment"
+  },
+  {
+   "default": "0",
+   "fieldname": "wtr_payment",
+   "fieldtype": "Float",
+   "label": "Water Payment"
+  },
+  {
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "label": "Item",
+   "options": "Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "grace_period",
+   "fieldtype": "Data",
+   "label": "Grace Period (day)",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "ex_tax_on_add_char",
+   "fieldtype": "Check",
+   "label": "Exclude Tax on Additional Charges"
+  },
+  {
+   "depends_on": "eval:doc.property_name",
+   "fieldname": "property_ownership",
+   "fieldtype": "Table",
+   "label": "Property Ownership",
+   "options": "Property Owner"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-08-08 10:57:42.280959",
+ "modified_by": "Administrator",
+ "module": "Property MS",
+ "name": "Lease",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "contract_number",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_views": 1
+}

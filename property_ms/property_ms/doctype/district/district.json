@@ -1,0 +1,60 @@
+{
+    "actions": [],
+    "allow_rename": 1,
+    "autoname": "DSCT-.#####",
+    "creation": "2023-12-06 13:38:17.939721",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "field_order": [
+        "district",
+        "column_break_ix4q",
+        "city"
+    ],
+    "fields": [
+        {
+            "fieldname": "district",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "District",
+            "reqd": 1
+        },
+        {
+            "fieldname": "column_break_ix4q",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "city",
+            "fieldtype": "Link",
+            "in_list_view": 1,
+            "label": "City",
+            "options": "City",
+            "reqd": 1
+        }
+    ],
+    "index_web_pages_for_search": 1,
+    "links": [],
+    "modified": "2023-12-07 12:11:56.522557",
+    "modified_by": "Administrator",
+    "module": "Property MS",
+    "name": "District",
+    "naming_rule": "Expression (old style)",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1,
+            "write": 1
+        }
+    ],
+    "search_fields": "district",
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": []
+}

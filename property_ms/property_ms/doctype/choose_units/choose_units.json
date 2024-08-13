@@ -1,0 +1,97 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-12-07 18:57:35.107834",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "unit_name",
+  "unit_number",
+  "unit_type",
+  "yearly",
+  "column_break_pcc2",
+  "half_yearly",
+  "monthly",
+  "daily",
+  "rented"
+ ],
+ "fields": [
+  {
+   "fetch_from": "unit_name.unit_number",
+   "fieldname": "unit_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Unit Number",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "unit_name.unit_type",
+   "fieldname": "unit_type",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Unit Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "yearly",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Yearly",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_pcc2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "half_yearly",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Half Yearly",
+   "read_only": 1
+  },
+  {
+   "fieldname": "monthly",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Monthly",
+   "read_only": 1
+  },
+  {
+   "fieldname": "daily",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Daily",
+   "read_only": 1
+  },
+  {
+   "fieldname": "unit_name",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Unit Name",
+   "options": "Unit"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "0",
+   "fetch_from": "unit_name.rented",
+   "fieldname": "rented",
+   "fieldtype": "Check",
+   "label": "Rented",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-12-19 14:54:43.944677",
+ "modified_by": "Administrator",
+ "module": "Property MS",
+ "name": "Choose Units",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

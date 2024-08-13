@@ -1,0 +1,523 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "PRT-.#####",
+ "creation": "2023-12-05 18:56:10.199012",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "basic_information_tab",
+  "property_name",
+  "property_code",
+  "property_type",
+  "property_province",
+  "district",
+  "about",
+  "sales_taxes_and_charges_template",
+  "column_break_ciiv",
+  "property_address",
+  "property_area",
+  "construction_date",
+  "property_city",
+  "property_commission",
+  "commission_type",
+  "collector",
+  "section_break_1fr7",
+  "sales_taxes_and_charges",
+  "ownership_information_tab",
+  "deed_number",
+  "property_number",
+  "bank",
+  "column_break_vprp",
+  "deed_date",
+  "deed_status",
+  "date_of_establishment",
+  "deed_image",
+  "section_break_uzuh",
+  "ownership",
+  "property_evaluation_data_tab",
+  "property_evaluation",
+  "property_evaluation_amount",
+  "property_buy_price",
+  "property_image",
+  "column_break_c2ha",
+  "property_evaluation_date",
+  "property_evaluator",
+  "property_buy_date",
+  "additional_data_tab",
+  "elevators_count",
+  "national_id_address",
+  "parking_count",
+  "property_facilities",
+  "electricity_account_number",
+  "column_break_9z1o",
+  "floors_count",
+  "building_flat",
+  "property_features",
+  "water_account_number",
+  "is_common_entrance_cleanliness_exist",
+  "building_guard_data_section",
+  "building_guard_name",
+  "building_guard_identity_number",
+  "column_break_xmqd",
+  "building_guard_mobile",
+  "real_estate_broker_agency_tab",
+  "document_type",
+  "release_date",
+  "published_by",
+  "a_copy_of_the_legal_document",
+  "column_break_ugff",
+  "document_number",
+  "expiration_date",
+  "released_on",
+  "the_national_address_of_the_property_in_rent_section",
+  "region",
+  "city",
+  "postal_code",
+  "column_break_qlvf",
+  "additional_number",
+  "building_number",
+  "section_break_z9gw",
+  "property_units",
+  "location_on_the_map_tab",
+  "longitude",
+  "latitude",
+  "column_break_onin",
+  "map"
+ ],
+ "fields": [
+  {
+   "fieldname": "property_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Property Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "property_province",
+   "fieldtype": "Link",
+   "label": "Property province",
+   "options": "Province"
+  },
+  {
+   "fieldname": "property_address",
+   "fieldtype": "Data",
+   "label": "Property Address",
+   "reqd": 1
+  },
+  {
+   "fieldname": "property_area",
+   "fieldtype": "Data",
+   "label": "Property area"
+  },
+  {
+   "fieldname": "construction_date",
+   "fieldtype": "Date",
+   "label": "Construction Date"
+  },
+  {
+   "fieldname": "property_city",
+   "fieldtype": "Link",
+   "label": "Property city",
+   "options": "City"
+  },
+  {
+   "fieldname": "column_break_ciiv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "about",
+   "fieldtype": "Long Text",
+   "in_list_view": 1,
+   "label": "About",
+   "max_height": "100px"
+  },
+  {
+   "fieldname": "basic_information_tab",
+   "fieldtype": "Tab Break",
+   "label": "Basic Information"
+  },
+  {
+   "fieldname": "property_commission",
+   "fieldtype": "Data",
+   "label": "Property Management Commission"
+  },
+  {
+   "fieldname": "commission_type",
+   "fieldtype": "Select",
+   "label": "Commission Type",
+   "options": "With payments made\nYearly\nHalf Yearly\nQuarterly"
+  },
+  {
+   "fieldname": "ownership_information_tab",
+   "fieldtype": "Tab Break",
+   "label": "Ownership Information"
+  },
+  {
+   "fieldname": "deed_number",
+   "fieldtype": "Data",
+   "label": "Deed Number"
+  },
+  {
+   "fieldname": "property_number",
+   "fieldtype": "Data",
+   "label": "Property Number"
+  },
+  {
+   "fieldname": "bank",
+   "fieldtype": "Link",
+   "label": "Bank",
+   "options": "Bank"
+  },
+  {
+   "fieldname": "column_break_vprp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "deed_date",
+   "fieldtype": "Date",
+   "label": "Deed Date"
+  },
+  {
+   "fieldname": "deed_status",
+   "fieldtype": "Select",
+   "label": "Deed status",
+   "options": "Mortgaged\nNot Mortgaged"
+  },
+  {
+   "fieldname": "date_of_establishment",
+   "fieldtype": "Date",
+   "label": "Date of Establishment"
+  },
+  {
+   "fieldname": "deed_image",
+   "fieldtype": "Attach",
+   "label": "Deed image"
+  },
+  {
+   "fieldname": "property_evaluation_data_tab",
+   "fieldtype": "Section Break",
+   "label": "Property evaluation data"
+  },
+  {
+   "fieldname": "property_evaluation",
+   "fieldtype": "Data",
+   "label": "Property evaluation"
+  },
+  {
+   "fieldname": "property_evaluation_amount",
+   "fieldtype": "Float",
+   "label": "Property evaluation amount"
+  },
+  {
+   "fieldname": "property_buy_price",
+   "fieldtype": "Float",
+   "label": "Property buy price"
+  },
+  {
+   "fieldname": "property_image",
+   "fieldtype": "Attach",
+   "label": "Property Image"
+  },
+  {
+   "fieldname": "column_break_c2ha",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "property_evaluation_date",
+   "fieldtype": "Date",
+   "label": "Property evaluation date"
+  },
+  {
+   "fieldname": "property_evaluator",
+   "fieldtype": "Data",
+   "label": "Property evaluator"
+  },
+  {
+   "fieldname": "property_buy_date",
+   "fieldtype": "Date",
+   "label": "Property buy date"
+  },
+  {
+   "fieldname": "additional_data_tab",
+   "fieldtype": "Tab Break",
+   "label": "Additional data"
+  },
+  {
+   "fieldname": "elevators_count",
+   "fieldtype": "Float",
+   "label": "Elevators count"
+  },
+  {
+   "fieldname": "national_id_address",
+   "fieldtype": "Data",
+   "label": "National id address"
+  },
+  {
+   "fieldname": "parking_count",
+   "fieldtype": "Float",
+   "label": "Parking count"
+  },
+  {
+   "fieldname": "property_facilities",
+   "fieldtype": "Long Text",
+   "label": "Property facilities",
+   "max_height": "100px"
+  },
+  {
+   "fieldname": "electricity_account_number",
+   "fieldtype": "Float",
+   "label": "Electricity account number"
+  },
+  {
+   "fieldname": "column_break_9z1o",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "floors_count",
+   "fieldtype": "Float",
+   "label": "Floors count"
+  },
+  {
+   "fieldname": "building_flat",
+   "fieldtype": "Data",
+   "label": "Building flat"
+  },
+  {
+   "fieldname": "property_features",
+   "fieldtype": "Long Text",
+   "label": "Property features",
+   "max_height": "100px"
+  },
+  {
+   "fieldname": "water_account_number",
+   "fieldtype": "Data",
+   "label": "Water account number"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_common_entrance_cleanliness_exist",
+   "fieldtype": "Check",
+   "label": "Is Common Entrance Cleanliness Exist"
+  },
+  {
+   "fieldname": "building_guard_data_section",
+   "fieldtype": "Section Break",
+   "label": "Building guard data"
+  },
+  {
+   "fieldname": "building_guard_name",
+   "fieldtype": "Data",
+   "label": "Building guard name"
+  },
+  {
+   "fieldname": "building_guard_identity_number",
+   "fieldtype": "Data",
+   "label": "Building guard identity number"
+  },
+  {
+   "fieldname": "column_break_xmqd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "building_guard_mobile",
+   "fieldtype": "Data",
+   "label": "Building guard mobile"
+  },
+  {
+   "fieldname": "real_estate_broker_agency_tab",
+   "fieldtype": "Tab Break",
+   "label": "Real estate broker agency"
+  },
+  {
+   "fieldname": "document_type",
+   "fieldtype": "Select",
+   "label": "Document Type",
+   "options": "\nOther\nAgency legitimacy\nLegitimate jurisdiction\nJudicial order\nEndowment completed (glasses)\nResolution Partners\nCompany incorporation contract"
+  },
+  {
+   "fieldname": "release_date",
+   "fieldtype": "Date",
+   "label": "Release Date"
+  },
+  {
+   "fieldname": "published_by",
+   "fieldtype": "Data",
+   "label": "Published by"
+  },
+  {
+   "fieldname": "column_break_ugff",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "document_number",
+   "fieldtype": "Data",
+   "label": "Document number"
+  },
+  {
+   "fieldname": "expiration_date",
+   "fieldtype": "Date",
+   "label": "Expiration date"
+  },
+  {
+   "fieldname": "released_on",
+   "fieldtype": "Data",
+   "label": "Released on"
+  },
+  {
+   "fieldname": "a_copy_of_the_legal_document",
+   "fieldtype": "Attach",
+   "label": "A copy of the legal document"
+  },
+  {
+   "fieldname": "property_units",
+   "fieldtype": "Table",
+   "label": "Property Units",
+   "options": "Property Units"
+  },
+  {
+   "fieldname": "section_break_z9gw",
+   "fieldtype": "Section Break",
+   "label": "Property Units"
+  },
+  {
+   "fieldname": "location_on_the_map_tab",
+   "fieldtype": "Tab Break",
+   "label": "Location on the Map"
+  },
+  {
+   "fieldname": "longitude",
+   "fieldtype": "Float",
+   "label": "longitude"
+  },
+  {
+   "fieldname": "column_break_onin",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "latitude",
+   "fieldtype": "Float",
+   "label": "Latitude"
+  },
+  {
+   "fieldname": "map",
+   "fieldtype": "Geolocation",
+   "label": "Map"
+  },
+  {
+   "fieldname": "the_national_address_of_the_property_in_rent_section",
+   "fieldtype": "Section Break",
+   "label": "The national address of the property in rent"
+  },
+  {
+   "fieldname": "region",
+   "fieldtype": "Link",
+   "label": "Region",
+   "options": "Country"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Link",
+   "label": "City",
+   "options": "City"
+  },
+  {
+   "fieldname": "postal_code",
+   "fieldtype": "Data",
+   "label": "Postal code"
+  },
+  {
+   "fieldname": "column_break_qlvf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "additional_number",
+   "fieldtype": "Data",
+   "label": "Additional number"
+  },
+  {
+   "fieldname": "building_number",
+   "fieldtype": "Data",
+   "label": "Building Number"
+  },
+  {
+   "fieldname": "district",
+   "fieldtype": "Link",
+   "label": "District",
+   "options": "District"
+  },
+  {
+   "fieldname": "collector",
+   "fieldtype": "Link",
+   "label": "Collector",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "property_code",
+   "fieldtype": "Data",
+   "label": "Property Code"
+  },
+  {
+   "default": "0",
+   "fieldname": "sales_taxes_and_charges_template",
+   "fieldtype": "Link",
+   "label": "Sales Taxes and Charges Template",
+   "options": "Sales Taxes and Charges Template"
+  },
+  {
+   "fieldname": "section_break_1fr7",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "sales_taxes_and_charges",
+   "fieldtype": "Table",
+   "label": "Sales Taxes and Charges",
+   "options": "Sales Taxes and Charges"
+  },
+  {
+   "fieldname": "property_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Property Type",
+   "options": "Properties Type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_uzuh",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "ownership",
+   "fieldtype": "Table",
+   "label": "Ownership",
+   "options": "Property Owner",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-08-08 10:36:31.000310",
+ "modified_by": "Administrator",
+ "module": "Property MS",
+ "name": "Properties",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "property_name",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

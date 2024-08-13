@@ -1,0 +1,108 @@
+{
+    "actions": [],
+    "allow_rename": 1,
+    "autoname": "TNT-.#####",
+    "creation": "2023-12-05 19:17:40.861928",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "field_order": [
+        "real_name",
+        "mobile_number",
+        "bank_name",
+        "phone_number",
+        "birthday",
+        "column_break_4hg5",
+        "personal_id_number",
+        "email",
+        "account_number",
+        "fax_number",
+        "address"
+    ],
+    "fields": [
+        {
+            "fieldname": "real_name",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Real name",
+            "reqd": 1
+        },
+        {
+            "fieldname": "mobile_number",
+            "fieldtype": "Phone",
+            "label": "Mobile Number",
+            "reqd": 1
+        },
+        {
+            "fieldname": "bank_name",
+            "fieldtype": "Link",
+            "label": "Bank Name",
+            "options": "Bank"
+        },
+        {
+            "fieldname": "phone_number",
+            "fieldtype": "Phone",
+            "label": "Phone Number"
+        },
+        {
+            "fieldname": "birthday",
+            "fieldtype": "Date",
+            "label": "Birthday"
+        },
+        {
+            "fieldname": "column_break_4hg5",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "personal_id_number",
+            "fieldtype": "Data",
+            "label": "Personal ID Number",
+            "reqd": 1
+        },
+        {
+            "fieldname": "email",
+            "fieldtype": "Data",
+            "label": "Email"
+        },
+        {
+            "fieldname": "account_number",
+            "fieldtype": "Data",
+            "label": "Account Number"
+        },
+        {
+            "fieldname": "fax_number",
+            "fieldtype": "Data",
+            "label": "Fax Number"
+        },
+        {
+            "fieldname": "address",
+            "fieldtype": "Data",
+            "label": "Address"
+        }
+    ],
+    "index_web_pages_for_search": 1,
+    "links": [],
+    "modified": "2023-12-07 15:22:12.616377",
+    "modified_by": "Administrator",
+    "module": "Property MS",
+    "name": "Tenant",
+    "naming_rule": "Expression (old style)",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1,
+            "write": 1
+        }
+    ],
+    "search_fields": "real_name",
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": []
+}
