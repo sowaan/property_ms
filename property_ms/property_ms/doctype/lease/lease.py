@@ -31,6 +31,7 @@ class Lease(Document):
 				"due_date": payment.due_date,
 				"taxes_and_charges": self.taxes_and_charges,
 				"taxes": self.taxes,
+				"company": self.company,
 			})
 
 			for tenant in self.property_ownership:
