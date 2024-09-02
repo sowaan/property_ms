@@ -23,6 +23,9 @@
   "property_name",
   "section_break_9njr",
   "choose_units",
+  "section_break_kitz",
+  "increment_schedule",
+  "section_break_rfcu",
   "property_ownership",
   "terms_tab",
   "terms",
@@ -169,7 +172,8 @@
    "fieldname": "payments_scheduling",
    "fieldtype": "Table",
    "label": "Payments Scheduling",
-   "options": "Payments Scheduling"
+   "options": "Payments Scheduling",
+   "reqd": 1
   },
   {
    "fieldname": "section_break_9njr",
@@ -180,7 +184,9 @@
    "fieldname": "choose_units",
    "fieldtype": "Table",
    "label": "Choose Units",
-   "options": "Choose Units"
+   "no_copy": 1,
+   "options": "Choose Units",
+   "reqd": 1
   },
   {
    "fieldname": "taxes_and_charges",
@@ -290,13 +296,34 @@
    "fieldname": "property_ownership",
    "fieldtype": "Table",
    "label": "Property Ownership",
-   "options": "Property Owner"
+   "options": "Property Owner",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_kitz",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "increment_schedule",
+   "fieldtype": "Table",
+   "label": "Increment Schedule",
+   "options": "Increment Schedule",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_rfcu",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
- "links": [],
- "modified": "2024-08-22 13:18:56.346552",
+ "links": [
+  {
+   "link_doctype": "Sales Invoice",
+   "link_fieldname": "custom_lease_reference"
+  }
+ ],
+ "modified": "2024-08-29 14:14:46.369629",
  "modified_by": "Administrator",
  "module": "Property MS",
  "name": "Lease",

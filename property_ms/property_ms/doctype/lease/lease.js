@@ -45,8 +45,8 @@ frappe.ui.form.on("Lease", {
             },
           ],
           primary_action_label: "Vacant",
-          async primary_action(fees) {
-            let selectedUnits = fees.choose_units.filter((comp) => {
+          async primary_action(lease) {
+            let selectedUnits = lease.choose_units.filter((comp) => {
               if (comp.__checked === 1) {
                 return comp;
               }
@@ -56,12 +56,14 @@ frappe.ui.form.on("Lease", {
               args: {
                 array: selectedUnits,
               },
+              freeze: true,
               callback: function (r) {
-                console.log(r.message, "REszponce");
-                frm.doc.choose_units.forEach((uni) => {
-                  uni.rented = 1;
-                  frm.save();
+                console.log(selectedUnits, "selected units");
+
+                selectedUnits.forEach((uni) => {
+                  uni.rented = 0;
                 });
+                frm.save('Update');
                 d.hide();
               },
             });
@@ -187,39 +189,47 @@ frappe.ui.form.on("Lease", {
         });
       }
       if (len > 0) {
-        for (let i = 0; i < len; i++) {
-          var row = frappe.model.add_child(
-            frm.doc,
-            "Payments Scheduling",
-            "payments_scheduling"
-          );
-          if (Monthly) {
-            row.rent_amount = totalMonthlyAmount;
+        for (var l = 0; l < frm.doc.increment_schedule.length; l++) {
+          var scheduleArray = frm.doc.increment_schedule[l];
+          for (let i = 0; i < len; i++) {
+            if ((i + 1) >= scheduleArray.from && (i + 1) <= scheduleArray.to) {
+              var row = frappe.model.add_child(
+                frm.doc,
+                "Payments Scheduling",
+                "payments_scheduling"
+              );
+              var incrementAmount = totalMonthlyAmount * (scheduleArray.increment / 100);
+              var amountAfterIncrement = totalMonthlyAmount + incrementAmount;
+
+              if (Monthly) {
+                row.rent_amount = amountAfterIncrement;
+              }
+              if (Quarterly) {
+                row.rent_amount = amountAfterIncrement * 3;
+              }
+              if (HalfYearly) {
+                row.rent_amount = amountAfterIncrement * 6;
+              }
+              if (Annually) {
+                row.rent_amount = amountAfterIncrement * 12;
+              }
+              row.vat = totalRate;
+              var add_pay_add =
+                frm.doc.ex_tax_on_add_char == 1 ? row.additional_charges : 0;
+              var ext_pay_add =
+                frm.doc.ex_tax_on_add_char != 1 ? row.additional_charges : 0;
+              var exc_insu_payment =
+                frm.doc.ex_ins_inv == 1 ? 0 : frm.doc.insur_payment;
+              row.total_amount = row.rent_amount + ext_pay_add;
+              row.total_tax = (row.total_amount / 100) * row.vat;
+              row.total_amount = row.total_amount + row.total_tax + add_pay_add;
+              row.additional_charges =
+                frm.doc.elec_payment +
+                frm.doc.maint_ser_pay +
+                frm.doc.wtr_payment +
+                exc_insu_payment;
+            }
           }
-          if (Quarterly) {
-            row.rent_amount = totalMonthlyAmount * 3;
-          }
-          if (HalfYearly) {
-            row.rent_amount = totalMonthlyAmount * 6;
-          }
-          if (Annually) {
-            row.rent_amount = totalMonthlyAmount * 12;
-          }
-          row.vat = totalRate;
-          var add_pay_add =
-            frm.doc.ex_tax_on_add_char == 1 ? row.additional_charges : 0;
-          var ext_pay_add =
-            frm.doc.ex_tax_on_add_char != 1 ? row.additional_charges : 0;
-          var exc_insu_payment =
-            frm.doc.ex_ins_inv == 1 ? 0 : frm.doc.insur_payment;
-          row.total_amount = row.rent_amount + ext_pay_add;
-          row.total_tax = (row.total_amount / 100) * row.vat;
-          row.total_amount = row.total_amount + row.total_tax + add_pay_add;
-          row.additional_charges =
-            frm.doc.elec_payment +
-            frm.doc.maint_ser_pay +
-            frm.doc.wtr_payment +
-            exc_insu_payment;
         }
         frm.trigger("calculate");
       }
@@ -350,6 +360,27 @@ frappe.ui.form.on("Choose Units", {
       unit.rented = 1;
     });
     refresh_field("choose_units");
+  },
+});
+
+frappe.ui.form.on("Increment Schedule", {
+  increment_schedule_remove: function (frm) {
+    frm.trigger("payment_scheduling");
+  },
+  increment_schedule_move: function (frm) {
+    frm.trigger("payment_scheduling");
+  },
+  increment_schedule_add: function (frm) {
+    frm.trigger("payment_scheduling");
+  },
+  from: function (frm) {
+    frm.trigger("payment_scheduling");
+  },
+  to: function (frm) {
+    frm.trigger("payment_scheduling");
+  },
+  increment: function (frm) {
+    frm.trigger("payment_scheduling");
   },
 });
 
