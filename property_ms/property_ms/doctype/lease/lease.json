@@ -6,6 +6,8 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "enabled",
+  "section_break_zgcv",
   "contract_type",
   "contract_number",
   "rent",
@@ -307,11 +309,22 @@
    "fieldname": "increment_schedule",
    "fieldtype": "Table",
    "label": "Increment Schedule",
-   "options": "Increment Schedule",
-   "reqd": 1
+   "options": "Increment Schedule"
   },
   {
    "fieldname": "section_break_rfcu",
+   "fieldtype": "Section Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "1",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enabled",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_zgcv",
    "fieldtype": "Section Break"
   }
  ],
@@ -323,7 +336,7 @@
    "link_fieldname": "custom_lease_reference"
   }
  ],
- "modified": "2024-08-29 14:14:46.369629",
+ "modified": "2024-09-02 16:53:14.576208",
  "modified_by": "Administrator",
  "module": "Property MS",
  "name": "Lease",

@@ -6,6 +6,17 @@ app_email = "support@sowaan.com"
 app_license = "mit"
 # required_apps = []
 
+fixtures = [
+	{
+        "doctype":"Custom Field",
+		"filters":[
+			[
+				"module", "=", "Property MS"
+			]
+		]
+	}
+]
+
 # Includes in <head>
 # ------------------
 
@@ -133,13 +144,13 @@ app_license = "mit"
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
+scheduler_events = {
 #	"all": [
 #		"property_ms.tasks.all"
 #	],
-#	"daily": [
-#		"property_ms.tasks.daily"
-#	],
+	"daily": [
+		"property_ms.property_ms.doctype.lease.lease.make_sales_invoice_scheduler"
+	],
 #	"hourly": [
 #		"property_ms.tasks.hourly"
 #	],
@@ -148,8 +159,8 @@ app_license = "mit"
 #	],
 #	"monthly": [
 #		"property_ms.tasks.monthly"
-#	],
-# }
+	# ],
+}
 
 # Testing
 # -------

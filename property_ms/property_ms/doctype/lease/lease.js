@@ -3,73 +3,18 @@
 
 frappe.ui.form.on("Lease", {
   refresh: function (frm) {
-    if (frm.doc.docstatus == 1) {
-      frm.add_custom_button(__("Make Vacant"), function () {
-        let d = new frappe.ui.Dialog({
-          title: __("Units"),
-          fields: [
-            {
-              label: "Units",
-              fieldname: "choose_units",
-              fieldtype: "Table",
-              cannot_add_rows: true,
-              cannot_delete_rows: true,
-              read_only: 1,
-              in_place_edit: true,
-              // no_copy: 1,
-              data: frm.doc.choose_units.filter((e) => e.rented == 1),
-              fields: [
-                {
-                  fieldname: "unit_name",
-                  fieldtype: "Link",
-                  in_list_view: 1,
-                  options: "Unit",
-                  label: "Unit Name",
-                  read_only: 1,
-                },
-                {
-                  fieldname: "unit_number",
-                  fieldtype: "data",
-                  in_list_view: 1,
-                  label: "Unit Number",
-                  read_only: 1,
-                },
-                {
-                  fieldname: "unit_type",
-                  fieldtype: "data",
-                  in_list_view: 1,
-                  label: "Unit Type",
-                  read_only: 1,
-                },
-              ],
-            },
-          ],
-          primary_action_label: "Vacant",
-          async primary_action(lease) {
-            let selectedUnits = lease.choose_units.filter((comp) => {
-              if (comp.__checked === 1) {
-                return comp;
-              }
-            });
-            frappe.call({
-              method: "property_ms.property_ms.api.unrented",
-              args: {
-                array: selectedUnits,
-              },
-              freeze: true,
-              callback: function (r) {
-                console.log(selectedUnits, "selected units");
-
-                selectedUnits.forEach((uni) => {
-                  uni.rented = 0;
-                });
-                frm.save('Update');
-                d.hide();
-              },
-            });
+    if (frm.doc.docstatus == 1 && frm.doc.enabled == 1) {
+      frm.add_custom_button(__("Terminate Lease"), function () {
+        frappe.call({
+          method: "property_ms.property_ms.doctype.lease.lease.terminate_lease",
+          args: {
+            doc: frm.doc,
+          },
+          freeze: true,
+          callback: function (r) {
+            frm.reload_doc();
           },
         });
-        d.show();
       });
     }
   },
@@ -352,6 +297,15 @@ frappe.ui.form.on("Lease", {
 });
 
 frappe.ui.form.on("Choose Units", {
+  choose_units_remove: function (frm) {
+    frm.trigger("payment_scheduling");
+  },
+  choose_units_move: function (frm) {
+    frm.trigger("payment_scheduling");
+  },
+  choose_units_add: function (frm) {
+    frm.trigger("payment_scheduling");
+  },
   yearly: function (frm, cdt, cdn) {
     frm.doc.choose_units.forEach((unit) => {
       unit.half_yearly = unit.yearly / 2;
@@ -360,6 +314,7 @@ frappe.ui.form.on("Choose Units", {
       unit.rented = 1;
     });
     refresh_field("choose_units");
+    frm.trigger("payment_scheduling");
   },
 });
 
@@ -385,31 +340,9 @@ frappe.ui.form.on("Increment Schedule", {
 });
 
 frappe.ui.form.on("Payments Scheduling", {
-  // refresh: function (frm) {
-  //   frm.trigger("issued_date");
-  // },
-
-  // issued_date: function (frm) {
-  //   // Set your input values
-  //   var graceDays = frm.doc.grace_period;
-
-  //   // Convert start date to a moment object
-  //   var rentDate = frm.doc.rent_start_date;
-
-  //   frm.doc.payments_scheduling.forEach((pay) => {
-  //     // Calculate due date by adding grace days and moving to the next month
-  //     var dueDate = frappe.datetime.add_days(rentDate, graceDays);
-
-  //     // Add the payment entry to the schedule
-  //     pay.issued_date = rentDate;
-  //     pay.due_date = dueDate;
-  //     rentDate = frappe.datetime.add_months(rentDate, 1);
-  //     console.log(pay.issued_date, dueDate);
-  //   });
-
-  //   // Set the generated payment schedule in the form
-  //   frm.refresh_field("payments_scheduling");
-  // },
+  rent_amount: function (frm, cdt, cdn) {
+    frm.trigger("additional_charges", cdt, cdn);
+  },
 
   additional_charges: function (frm, cdt, cdn) {
     frm.doc.payments_scheduling.forEach((pay) => {
