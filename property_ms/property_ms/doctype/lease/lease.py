@@ -72,7 +72,7 @@ def terminate_lease(doc):
 
 @frappe.whitelist()
 def make_sales_invoice_scheduler():
-	lease_list = frappe.get_all("Lease", filters={'enabled': 1})
+	lease_list = frappe.get_all("Lease", filters=[['enabled', '=', 1], ['docstatus', '!=', 2]])
 
 	for lease in lease_list:
 		doc = frappe.get_doc('Lease', lease.name)

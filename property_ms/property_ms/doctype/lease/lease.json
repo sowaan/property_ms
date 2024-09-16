@@ -182,7 +182,6 @@
    "fieldtype": "Section Break"
   },
   {
-   "allow_on_submit": 1,
    "fieldname": "choose_units",
    "fieldtype": "Table",
    "label": "Choose Units",
@@ -336,7 +335,7 @@
    "link_fieldname": "custom_lease_reference"
   }
  ],
- "modified": "2024-09-02 16:53:14.576208",
+ "modified": "2024-09-10 14:30:35.668519",
  "modified_by": "Administrator",
  "module": "Property MS",
  "name": "Lease",
