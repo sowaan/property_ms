@@ -23,6 +23,16 @@ class Lease(Document):
 
 	def on_submit(self):
 		self.unit_rented()
+		user_list = frappe.get_all("Has Role", filters={"role": "Property Approver"}, pluck="parent")
+		if frappe.session.user not in user_list:
+			for unit in self.choose_units:
+				minimal_price = frappe.db.get_value("Unit", unit.unit_name, "minimal_rental_price")
+				if unit.yearly < minimal_price:
+					frappe.throw(f"Error: Rental price for unit {unit.unit_name} is below minimal rental price")
+
+
+
+
 		# for payment in self.payments_scheduling:
 		# 	rate_wo_tax = flt(payment.total_amount) - flt(payment.total_tax)
 		# 	rate = rate_wo_tax if self.ex_tax_on_add_char == 0 else rate_wo_tax - payment.additional_charges

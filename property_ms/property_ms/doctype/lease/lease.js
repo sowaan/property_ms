@@ -32,13 +32,23 @@ frappe.ui.form.on("Lease", {
   },
 
   property_name: function (frm, cdt, cdn) {
-    if (frm.doc.property_name) {
+    var property_name = frm.doc.property_name;
+    if (property_name) {
+      // set query
+      frm.fields_dict.choose_units.grid.get_field("unit_name").get_query = function (frm, cdt, cdn) {
+        return {
+          filters: {
+            property: property_name,
+          },
+        };
+      };
+
       // get units
       frm.set_value("choose_units", []);
       frappe.db
         .get_list("Unit", {
           filters: {
-            property: frm.doc.property_name,
+            property: property_name,
             rented: 0,
           },
           fields: ["*"],
@@ -73,7 +83,7 @@ frappe.ui.form.on("Lease", {
         method: "frappe.client.get",
         args: {
           doctype: "Properties",
-          name: frm.doc.property_name,
+          name: property_name,
         },
         callback(r) {
           if (r.message) {
@@ -144,7 +154,7 @@ frappe.ui.form.on("Lease", {
                   "Payments Scheduling",
                   "payments_scheduling"
                 );
-                var incrementAmount = totalMonthlyAmount * (scheduleArray.increment / 100);
+                var incrementAmount = scheduleArray.in_amount ? (totalMonthlyAmount + scheduleArray.increment_amount) : (totalMonthlyAmount * (scheduleArray.increment / 100));
                 var amountAfterIncrement = totalMonthlyAmount + incrementAmount;
 
                 if (Monthly) {

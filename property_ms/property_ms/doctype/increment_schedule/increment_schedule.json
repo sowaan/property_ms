@@ -8,8 +8,10 @@
  "field_order": [
   "from",
   "to",
+  "in_amount",
   "column_break_xcjb",
-  "increment"
+  "increment",
+  "increment_amount"
  ],
  "fields": [
   {
@@ -20,11 +22,12 @@
    "reqd": 1
   },
   {
+   "depends_on": "eval:!doc.in_amount",
    "fieldname": "increment",
    "fieldtype": "Percent",
    "in_list_view": 1,
-   "label": "Increment",
-   "reqd": 1
+   "label": "Increment Percentage",
+   "mandatory_depends_on": "eval:!doc.in_amount"
   },
   {
    "fieldname": "column_break_xcjb",
@@ -36,12 +39,25 @@
    "in_list_view": 1,
    "label": "To",
    "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "in_amount",
+   "fieldtype": "Check",
+   "label": "In amount"
+  },
+  {
+   "depends_on": "eval:doc.in_amount",
+   "fieldname": "increment_amount",
+   "fieldtype": "Float",
+   "label": "Increment Amount",
+   "mandatory_depends_on": "eval:doc.in_amount"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-08-27 14:37:00.073671",
+ "modified": "2024-09-28 11:55:52.975986",
  "modified_by": "Administrator",
  "module": "Property MS",
  "name": "Increment Schedule",
