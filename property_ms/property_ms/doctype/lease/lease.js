@@ -63,6 +63,8 @@ frappe.ui.form.on("Lease", {
               5
             );
           }
+          console.log(res, "Responce");
+
           for (let i = 0; i < res.length; i++) {
             const ele = res[i];
             var row = frappe.model.add_child(
@@ -73,6 +75,10 @@ frappe.ui.form.on("Lease", {
             row.unit_name = ele.name;
             row.unit_number = ele.unit_number;
             row.rented = ele.rented;
+            row.yearly = ele.annual_rent_amount;
+            row.half_yearly = ele.annual_rent_amount / 2;
+            row.monthly = ele.annual_rent_amount / 12;
+            row.daily = ele.annual_rent_amount / 365;
           }
           refresh_field("choose_units");
         });

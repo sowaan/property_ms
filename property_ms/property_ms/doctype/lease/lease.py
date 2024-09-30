@@ -82,7 +82,7 @@ def terminate_lease(doc):
 
 @frappe.whitelist()
 def make_sales_invoice_scheduler():
-	lease_list = frappe.get_all("Lease", filters=[['enabled', '=', 1], ['docstatus', '!=', 2]])
+	lease_list = frappe.get_all("Lease", filters=[['enabled', '=', 1], ['docstatus', '=', 1]])
 
 	for lease in lease_list:
 		doc = frappe.get_doc('Lease', lease.name)
@@ -94,7 +94,7 @@ def make_sales_invoice_scheduler():
 				if doc.ex_tax_on_add_char == 1:
 					for item in doc.taxes:
 						if item.charge_type == "Actual":
-							item.tax_amount = payment.additional_charges
+							# item.tax_amount = payment.additional_charges
 							item.rate = 0
 				
 				invoice = frappe.get_doc({
