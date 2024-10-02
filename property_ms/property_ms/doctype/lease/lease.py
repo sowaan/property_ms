@@ -72,9 +72,10 @@ class Lease(Document):
 			frappe.db.set_value("Unit", unit.unit_name, "rented", 0)
 
 @frappe.whitelist()
-def terminate_lease(doc):
+def terminate_lease(doc, terminated_date):
 	doc = json.loads(doc)
 	frappe.db.set_value("Lease", doc.get('name'), "enabled", 0)
+	frappe.db.set_value("Lease", doc.get('name'), "terminated_date", terminated_date)
 	for unit in doc.get('choose_units'):
 		frappe.db.set_value("Unit", unit.get('unit_name'), "rented", 0)
 	frappe.msgprint("Lease has been terminated successfully")

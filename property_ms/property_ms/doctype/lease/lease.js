@@ -5,16 +5,35 @@ frappe.ui.form.on("Lease", {
   refresh: function (frm) {
     if (frm.doc.docstatus == 1 && frm.doc.enabled == 1) {
       frm.add_custom_button(__("Terminate Lease"), function () {
-        frappe.call({
-          method: "property_ms.property_ms.doctype.lease.lease.terminate_lease",
-          args: {
-            doc: frm.doc,
-          },
-          freeze: true,
-          callback: function (r) {
-            frm.reload_doc();
-          },
+        let d = new frappe.ui.Dialog({
+          title: 'Terminate Lease',
+          fields: [
+            {
+              label: 'Terminated Date',
+              fieldname: 'terminated_date',
+              fieldtype: 'Date',
+              reqd: 1
+            }
+          ],
+          size: 'small', // small, large, extra-large 
+          primary_action_label: 'Terminate',
+          primary_action(values) {
+            frappe.call({
+              method: "property_ms.property_ms.doctype.lease.lease.terminate_lease",
+              args: {
+                doc: frm.doc,
+                terminated_date: values.terminated_date
+              },
+              freeze: true,
+              callback: function (r) {
+                frm.reload_doc();
+              },
+            });
+            d.hide();
+          }
         });
+
+        d.show();
       });
     }
   },
@@ -63,7 +82,6 @@ frappe.ui.form.on("Lease", {
               5
             );
           }
-          console.log(res, "Responce");
 
           for (let i = 0; i < res.length; i++) {
             const ele = res[i];
