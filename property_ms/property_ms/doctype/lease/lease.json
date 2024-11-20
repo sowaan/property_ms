@@ -6,6 +6,7 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "column_break_htco",
   "enabled",
   "section_break_zgcv",
   "contract_type",
@@ -333,6 +334,10 @@
    "fieldtype": "Date",
    "label": "Terminated Date",
    "read_only": 1
+  },
+  {
+   "fieldname": "column_break_htco",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -343,7 +348,7 @@
    "link_fieldname": "custom_lease_reference"
   }
  ],
- "modified": "2024-10-01 17:26:17.718736",
+ "modified": "2024-11-18 14:57:04.727983",
  "modified_by": "Administrator",
  "module": "Property MS",
  "name": "Lease",

@@ -34,7 +34,6 @@
    "read_only": 1
   },
   {
-   "fetch_from": "unit_name.annual_rent_amount",
    "fieldname": "yearly",
    "fieldtype": "Float",
    "in_list_view": 1,
@@ -85,7 +84,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-09-30 13:46:52.588335",
+ "modified": "2024-11-18 13:23:04.922386",
  "modified_by": "Administrator",
  "module": "Property MS",
  "name": "Choose Units",

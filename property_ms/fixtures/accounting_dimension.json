@@ -1,0 +1,24 @@
+[
+ {
+  "dimension_defaults": [],
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Accounting Dimension",
+  "document_type": "Unit",
+  "fieldname": "unit_center",
+  "label": "Unit Center",
+  "modified": "2024-10-22 13:24:39.117442",
+  "name": "Unit Center"
+ },
+ {
+  "dimension_defaults": [],
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Accounting Dimension",
+  "document_type": "Properties",
+  "fieldname": "properties",
+  "label": "Properties",
+  "modified": "2024-10-22 13:24:49.585644",
+  "name": "Properties"
+ }
+]

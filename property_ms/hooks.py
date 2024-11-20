@@ -14,7 +14,16 @@ fixtures = [
 				"module", "=", "Property MS"
 			]
 		]
-	}
+	},
+    {
+        "doctype":"Accounting Dimension",
+		"filters":[
+			[
+				"name", "in", ["Unit Center", "Properties"]
+			]
+		]
+	},
+    
 ]
 
 # Includes in <head>

@@ -381,12 +381,11 @@ frappe.ui.form.on("Choose Units", {
   },
 
   yearly: function (frm, cdt, cdn) {
-    frm.doc.choose_units.forEach((unit) => {
-      unit.half_yearly = unit.yearly / 2;
-      unit.monthly = unit.yearly / 12;
-      unit.daily = unit.yearly / 365;
-      unit.rented = 1;
-    });
+    const childRow = locals[cdt][cdn];
+    childRow.half_yearly = childRow.yearly / 2;
+    childRow.monthly = childRow.yearly / 12;
+    childRow.daily = childRow.yearly / 365;
+    childRow.rented = 1;
     refresh_field("choose_units");
     frm.trigger("payment_scheduling");
   },
@@ -419,15 +418,14 @@ frappe.ui.form.on("Payments Scheduling", {
   },
 
   additional_charges: function (frm, cdt, cdn) {
-    frm.doc.payments_scheduling.forEach((pay) => {
-      var add_pay_add =
-        frm.doc.ex_tax_on_add_char == 1 ? pay.additional_charges : 0;
-      var ext_pay_add =
-        frm.doc.ex_tax_on_add_char != 1 ? pay.additional_charges : 0;
-      pay.total_amount = pay.rent_amount + ext_pay_add;
-      pay.total_tax = (pay.total_amount / 100) * pay.vat;
-      pay.total_amount = pay.total_amount + pay.total_tax + add_pay_add;
-    });
+    const childRow = locals[cdt][cdn];
+    var add_pay_add =
+      frm.doc.ex_tax_on_add_char == 1 ? childRow.additional_charges : 0;
+    var ext_pay_add =
+      frm.doc.ex_tax_on_add_char != 1 ? childRow.additional_charges : 0;
+    childRow.total_amount = childRow.rent_amount + ext_pay_add;
+    childRow.total_tax = (childRow.total_amount / 100) * childRow.vat;
+    childRow.total_amount = childRow.total_amount + childRow.total_tax + add_pay_add;
     refresh_field("payments_scheduling");
   },
 });

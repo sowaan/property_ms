@@ -88,6 +88,7 @@ def make_sales_invoice_scheduler():
 	for lease in lease_list:
 		doc = frappe.get_doc('Lease', lease.name)
 		for payment in doc.payments_scheduling:
+			additional_charges = payment.additional_charges / len(doc.choose_units)
 			if str(payment.issued_date) <= frappe.utils.nowdate() and payment.invoiced == 0:
 				frappe.db.set_value("Payments Scheduling", payment.name, 'invoiced', 1)
 				rate_wo_tax = flt(payment.total_amount) - flt(payment.total_tax)
@@ -98,24 +99,46 @@ def make_sales_invoice_scheduler():
 							# item.tax_amount = payment.additional_charges
 							item.rate = 0
 				
-				invoice = frappe.get_doc({
-					"doctype": "Sales Invoice",
-					"customer": doc.renter,
-					"set_posting_time": 1,
-					"posting_date": payment.issued_date,
-					"due_date": payment.due_date,
-					"taxes_and_charges": doc.taxes_and_charges,
-					"taxes": doc.taxes,
-					"company": doc.company,
-					"custom_lease_reference": doc.name,
-				})
-
 				for tenant in doc.property_ownership:
-					invoice.append("items", {
-						"item_code": doc.item,
-						"qty": 1,
-						"rate": rate * (tenant.ownership / 100),
-						"cost_center": tenant.cost_center,	
+					invoice = frappe.get_doc({
+						"doctype": "Sales Invoice",
+						"customer": doc.renter,
+						"set_posting_time": 1,
+						"posting_date": payment.issued_date,
+						"due_date": payment.due_date,
+						"taxes_and_charges": doc.taxes_and_charges,
+						"taxes": doc.taxes,
+						"company": doc.company,
+						"custom_lease_reference": doc.name,
 					})
-				invoice.save()
+					for unit in doc.choose_units:
+						itemRate = 0
+						if doc.ex_tax_on_add_char == 0:
+							if doc.type == "Monthly":
+								itemRate = unit.monthly + additional_charges
+							elif doc.type == "Quarterly":
+								itemRate = (unit.monthly * 3) + additional_charges
+							elif doc.type == "Half Yearly":
+								itemRate = unit.half_yearly + additional_charges
+							elif doc.type == "Yearly":
+								itemRate = unit.yearly + additional_charges
+						else:
+							if doc.type == "Monthly":
+								itemRate = unit.monthly
+							elif doc.type == "Quarterly":
+								itemRate = (unit.monthly * 3)
+							elif doc.type == "Half Yearly":
+								itemRate = unit.half_yearly
+							elif doc.type == "Yearly":
+								itemRate = unit.yearly
+
+						invoice.append("items", {
+							"item_code": doc.item,
+							"qty": 1,
+							"rate": itemRate * (tenant.ownership / 100),
+							"cost_center": tenant.cost_center,	
+							"properties": doc.property_name,
+							"unit_center": unit.unit_name
+						})
+					invoice.save()
 
