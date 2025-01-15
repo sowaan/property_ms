@@ -49,11 +49,7 @@
   "section_break_cvj4",
   "payments_scheduling",
   "expenses_section",
-  "insur_payment",
-  "maint_ser_pay",
-  "column_break_kikg",
-  "elec_payment",
-  "wtr_payment"
+  "expenses"
  ],
  "fields": [
   {
@@ -140,10 +136,6 @@
    "fieldname": "expenses_section",
    "fieldtype": "Section Break",
    "label": "Expenses"
-  },
-  {
-   "fieldname": "column_break_kikg",
-   "fieldtype": "Column Break"
   },
   {
    "fieldname": "column_break_64ij",
@@ -252,30 +244,6 @@
    "label": "Terms and Conditions Details"
   },
   {
-   "default": "0",
-   "fieldname": "insur_payment",
-   "fieldtype": "Float",
-   "label": "Insurance Payment"
-  },
-  {
-   "default": "0",
-   "fieldname": "maint_ser_pay",
-   "fieldtype": "Float",
-   "label": "Maintenance Services Payment"
-  },
-  {
-   "default": "0",
-   "fieldname": "elec_payment",
-   "fieldtype": "Float",
-   "label": "Electricity Payment"
-  },
-  {
-   "default": "0",
-   "fieldname": "wtr_payment",
-   "fieldtype": "Float",
-   "label": "Water Payment"
-  },
-  {
    "fieldname": "item",
    "fieldtype": "Link",
    "label": "Item",
@@ -338,6 +306,12 @@
   {
    "fieldname": "column_break_htco",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "expenses",
+   "fieldtype": "Table",
+   "label": "Expenses",
+   "options": "Expenses"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -348,7 +322,7 @@
    "link_fieldname": "custom_lease_reference"
   }
  ],
- "modified": "2024-11-18 14:57:04.727983",
+ "modified": "2025-01-13 13:19:16.678595",
  "modified_by": "Administrator",
  "module": "Property MS",
  "name": "Lease",

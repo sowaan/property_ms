@@ -194,20 +194,19 @@ frappe.ui.form.on("Lease", {
                   row.rent_amount = amountAfterIncrement * 12;
                 }
                 row.vat = totalRate;
+                let additional_charges = 0;
+                for (let j = 0; j < frm.doc.expenses.length; j++) {
+                  const ele = frm.doc.expenses[j];
+                  additional_charges += ele.expence_amount;
+                }
+                row.additional_charges = additional_charges;
                 var add_pay_add =
                   frm.doc.ex_tax_on_add_char == 1 ? row.additional_charges : 0;
                 var ext_pay_add =
                   frm.doc.ex_tax_on_add_char != 1 ? row.additional_charges : 0;
-                var exc_insu_payment =
-                  frm.doc.ex_ins_inv == 1 ? 0 : frm.doc.insur_payment;
                 row.total_amount = row.rent_amount + ext_pay_add;
                 row.total_tax = (row.total_amount / 100) * row.vat;
                 row.total_amount = row.total_amount + row.total_tax + add_pay_add;
-                row.additional_charges =
-                  frm.doc.elec_payment +
-                  frm.doc.maint_ser_pay +
-                  frm.doc.wtr_payment +
-                  exc_insu_payment;
               }
             }
           }
@@ -231,20 +230,19 @@ frappe.ui.form.on("Lease", {
               row.rent_amount = totalMonthlyAmount * 12;
             }
             row.vat = totalRate;
+            let additional_charges = 0;
+            for (let j = 0; j < frm.doc.expenses.length; j++) {
+              const ele = frm.doc.expenses[j];
+              additional_charges += ele.expence_amount;
+            }
+            row.additional_charges = additional_charges;
             var add_pay_add =
               frm.doc.ex_tax_on_add_char == 1 ? row.additional_charges : 0;
             var ext_pay_add =
               frm.doc.ex_tax_on_add_char != 1 ? row.additional_charges : 0;
-            var exc_insu_payment =
-              frm.doc.ex_ins_inv == 1 ? 0 : frm.doc.insur_payment;
             row.total_amount = row.rent_amount + ext_pay_add;
             row.total_tax = (row.total_amount / 100) * row.vat;
             row.total_amount = row.total_amount + row.total_tax + add_pay_add;
-            row.additional_charges =
-              frm.doc.elec_payment +
-              frm.doc.maint_ser_pay +
-              frm.doc.wtr_payment +
-              exc_insu_payment;
           }
         }
         frm.trigger("calculate");
@@ -310,31 +308,17 @@ frappe.ui.form.on("Lease", {
     frm.trigger("calculate");
   },
 
-  insur_payment: function (frm) {
-    frm.trigger("calculate");
-  },
-
-  elec_payment: function (frm) {
-    frm.trigger("calculate");
-  },
-
-  maint_ser_pay: function (frm) {
-    frm.trigger("calculate");
-  },
-
-  wtr_payment: function (frm) {
+  expenses: function (frm) {
     frm.trigger("calculate");
   },
 
   calculate: function (frm) {
     if (frm.doc.payments_scheduling.length > 0) {
-      var exc_insu_payment =
-        frm.doc.ex_ins_inv == 1 ? 0 : frm.doc.insur_payment;
-      var total_ad_charg =
-        frm.doc.elec_payment +
-        frm.doc.maint_ser_pay +
-        frm.doc.wtr_payment +
-        exc_insu_payment;
+      let total_ad_charg = 0;
+      for (let i = 0; i < frm.doc.expenses.length; i++) {
+        const ele = frm.doc.expenses[i];
+        total_ad_charg += ele.expence_amount;
+      }
       var graceDays = frm.doc.grace_period;
       // Convert start date to a moment object
       var rentDate = frm.doc.rent_start_date;
@@ -456,5 +440,13 @@ frappe.ui.form.on("Sales Taxes and Charges", {
       pay.total_amount = pay.total_amount + pay.total_tax + add_pay_add;
     });
     refresh_field("payments_scheduling");
+  },
+});
+
+
+
+frappe.ui.form.on("Expenses", {
+  expence_amount: function (frm) {
+    frm.trigger("calculate");
   },
 });
