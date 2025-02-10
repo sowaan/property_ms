@@ -61,11 +61,6 @@ def make_sales_invoice_scheduler():
 			if str(payment.issued_date) <= frappe.utils.nowdate() and payment.invoiced == 0:
 				frappe.db.set_value("Payments Scheduling", payment.name, 'invoiced', 1)
 				rate_wo_tax = flt(payment.total_amount) - flt(payment.total_tax)
-				# if doc.ex_tax_on_add_char == 1:
-				# 	for item in doc.taxes:
-				# 		if item.charge_type == "Actual":
-				# 			# item.tax_amount = payment.additional_charges
-				# 			item.rate = 0
 				
 				for tenant in doc.property_ownership:
 					invoice = frappe.get_doc({
@@ -74,7 +69,6 @@ def make_sales_invoice_scheduler():
 						"set_posting_time": 1,
 						"posting_date": payment.issued_date,
 						"due_date": payment.due_date,
-						# "taxes_and_charges": doc.taxes_and_charges,
 						"company": doc.company,
 						"custom_lease_reference": doc.name,
 					})
@@ -82,25 +76,25 @@ def make_sales_invoice_scheduler():
 					for unit in doc.choose_units:
 						itemRate = 0
 						if doc.ex_tax_on_add_char == 0:
-							itemRate = payment.rent_amount + additional_charges
-							# if doc.type == "Monthly":
-							# 	itemRate = unit.monthly + additional_charges
-							# elif doc.type == "Quarterly":
-							# 	itemRate = (unit.monthly * 3) + additional_charges
-							# elif doc.type == "Half Yearly":
-							# 	itemRate = unit.half_yearly + additional_charges
-							# elif doc.type == "Yearly":
-							# 	itemRate = unit.yearly + additional_charges
+							# itemRate = payment.rent_amount + additional_charges
+							if doc.type == "Monthly":
+								itemRate = unit.monthly + additional_charges
+							elif doc.type == "Quarterly":
+								itemRate = (unit.monthly * 3) + additional_charges
+							elif doc.type == "Half Yearly":
+								itemRate = unit.half_yearly + additional_charges
+							elif doc.type == "Yearly":
+								itemRate = unit.yearly + additional_charges
 						else:
-							itemRate = payment.rent_amount
-							# if doc.type == "Monthly":
-							# 	itemRate = unit.monthly
-							# elif doc.type == "Quarterly":
-							# 	itemRate = (unit.monthly * 3)
-							# elif doc.type == "Half Yearly":
-							# 	itemRate = unit.half_yearly
-							# elif doc.type == "Yearly":
-							# 	itemRate = unit.yearly
+							# itemRate = payment.rent_amount
+							if doc.type == "Monthly":
+								itemRate = unit.monthly
+							elif doc.type == "Quarterly":
+								itemRate = (unit.monthly * 3)
+							elif doc.type == "Half Yearly":
+								itemRate = unit.half_yearly
+							elif doc.type == "Yearly":
+								itemRate = unit.yearly
 
 						# income_account = frappe.get_last_doc("Account", {
 						# 	"company": doc.company,
