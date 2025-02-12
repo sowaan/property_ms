@@ -2,7 +2,7 @@
 # For license information, please see license.txt
 
 import frappe
-from frappe.utils import flt
+from frappe.utils import flt, nowdate
 from frappe.model.document import Document
 import json
 
@@ -51,14 +51,15 @@ def terminate_lease(doc, terminated_date):
 
 @frappe.whitelist()
 def make_sales_invoice_scheduler():
-	# print("Scheduler started \n\n\n")
 	lease_list = frappe.get_all("Lease", filters=[['enabled', '=', 1], ['docstatus', '=', 1]])
-
+	total_unit_amount = 0
 	for lease in lease_list:
 		doc = frappe.get_doc('Lease', lease.name)
+		total_unit_amount += sum(unit.yearly for unit in doc.choose_units)
+
 		for payment in doc.payments_scheduling:
 			additional_charges = payment.additional_charges / len(doc.choose_units)
-			if str(payment.issued_date) <= frappe.utils.nowdate() and payment.invoiced == 0:
+			if str(payment.issued_date) <= nowdate() and payment.invoiced == 0:
 				frappe.db.set_value("Payments Scheduling", payment.name, 'invoiced', 1)
 				rate_wo_tax = flt(payment.total_amount) - flt(payment.total_tax)
 				
@@ -76,25 +77,27 @@ def make_sales_invoice_scheduler():
 					for unit in doc.choose_units:
 						itemRate = 0
 						if doc.ex_tax_on_add_char == 0:
+							itemRate = ((unit.yearly / total_unit_amount) * payment.rent_amount) + additional_charges
 							# itemRate = payment.rent_amount + additional_charges
-							if doc.type == "Monthly":
-								itemRate = unit.monthly + additional_charges
-							elif doc.type == "Quarterly":
-								itemRate = (unit.monthly * 3) + additional_charges
-							elif doc.type == "Half Yearly":
-								itemRate = unit.half_yearly + additional_charges
-							elif doc.type == "Yearly":
-								itemRate = unit.yearly + additional_charges
+							# if doc.type == "Monthly":
+							# 	itemRate = unit.monthly + additional_charges
+							# elif doc.type == "Quarterly":
+							# 	itemRate = (unit.monthly * 3) + additional_charges
+							# elif doc.type == "Half Yearly":
+							# 	itemRate = unit.half_yearly + additional_charges
+							# elif doc.type == "Yearly":
+							# 	itemRate = unit.yearly + additional_charges
 						else:
+							itemRate = ((unit.yearly / total_unit_amount) * payment.rent_amount)
 							# itemRate = payment.rent_amount
-							if doc.type == "Monthly":
-								itemRate = unit.monthly
-							elif doc.type == "Quarterly":
-								itemRate = (unit.monthly * 3)
-							elif doc.type == "Half Yearly":
-								itemRate = unit.half_yearly
-							elif doc.type == "Yearly":
-								itemRate = unit.yearly
+							# if doc.type == "Monthly":
+							# 	itemRate = unit.monthly
+							# elif doc.type == "Quarterly":
+							# 	itemRate = (unit.monthly * 3)
+							# elif doc.type == "Half Yearly":
+							# 	itemRate = unit.half_yearly
+							# elif doc.type == "Yearly":
+							# 	itemRate = unit.yearly
 
 						# income_account = frappe.get_last_doc("Account", {
 						# 	"company": doc.company,
@@ -140,21 +143,9 @@ def make_sales_invoice_scheduler():
 									"cost_center": lease_tax.cost_center,
 									"tax_amount": (itemRate / 100) * lease_tax.rate,
 								})
-						# for add_charge in doc.expenses:
-						# 	invoice.append("items", {
-						# 		"item_code": add_charge.expense_type,
-						# 		"qty": 1,
-						# 		"rate": add_charge.expence_amount * (tenant.ownership / 100),
-						# 		"cost_center": tenant.cost_center,
-						# 		"properties": doc.property_name,
-						# 		"unit_center": unit.unit_name,
-						# 		"item_tax_template": add_charge.item_tax_template
-						# 	})
-					# invoice.run_method("set_missing_values")
-					# invoice.run_method("calculate_taxes_and_totals")
+						
 					invoice.set_missing_values()
 					invoice.calculate_taxes_and_totals()
-					# print(invoice, "Invoice Values \n\n\n")
 					invoice.insert()
 
 
