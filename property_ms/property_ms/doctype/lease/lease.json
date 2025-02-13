@@ -8,6 +8,7 @@
  "field_order": [
   "column_break_htco",
   "enabled",
+  "image",
   "section_break_zgcv",
   "contract_type",
   "contract_number",
@@ -312,8 +313,15 @@
    "fieldtype": "Table",
    "label": "Expenses",
    "options": "Expenses"
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "hidden": 1,
+   "label": "Image"
   }
  ],
+ "image_field": "image",
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [
@@ -322,7 +330,7 @@
    "link_fieldname": "custom_lease_reference"
   }
  ],
- "modified": "2025-01-13 13:19:16.678595",
+ "modified": "2025-02-13 10:47:17.058130",
  "modified_by": "Administrator",
  "module": "Property MS",
  "name": "Lease",
