@@ -85,8 +85,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Customer",
-   "options": "Customer",
-   "reqd": 1
+   "options": "Customer"
   }
  ],
  "index_web_pages_for_search": 1,
