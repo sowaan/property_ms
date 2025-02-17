@@ -151,7 +151,12 @@ def make_sales_invoice_scheduler():
 
 @frappe.whitelist()
 def get_additional_item():
-	return frappe.get_last_doc("Item", {
+	if not frappe.db.exists("Item", {
 		"additional_charges_item": 1
-	})
+	}):
+		return frappe.get_last_doc("Item")
+	else:
+		return frappe.get_last_doc("Item", {
+			"additional_charges_item": 1
+		})
 

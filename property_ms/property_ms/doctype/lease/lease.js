@@ -36,6 +36,17 @@ frappe.ui.form.on("Lease", {
         d.show();
       });
     }
+    var company = frm.doc.company;
+    if (company) {
+      // set query
+      frm.fields_dict.property_ownership.grid.get_field("cost_center").get_query = function (frm, cdt, cdn) {
+        return {
+          filters: {
+            "company": company,
+          },
+        };
+      };
+    }
   },
 
   property_type: function (frm) {
@@ -450,3 +461,17 @@ frappe.ui.form.on("Expenses", {
     frm.trigger("calculate");
   },
 });
+
+
+// frappe.ui.form.on("Property Owner", {
+//   cost_center: function (frm) {
+//     // filter query
+//     frm.fields_dict.property_ownership.grid.get_field("cost_center").get_query = function (frm, cdt, cdn) {
+//       return {
+//         filters: {
+//           company: frm.doc.company,
+//         },
+//       };
+//     };
+//   },
+// });
