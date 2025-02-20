@@ -17,6 +17,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Expense Type",
+   "link_filters": "[[\"Item\",\"additional_charges_item\",\"=\",1]]",
    "options": "Item",
    "reqd": 1
   },
@@ -42,7 +43,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-01-14 13:48:22.000956",
+ "modified": "2025-02-20 12:23:05.710813",
  "modified_by": "Administrator",
  "module": "Property MS",
  "name": "Expenses",
