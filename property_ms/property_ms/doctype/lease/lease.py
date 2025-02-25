@@ -53,9 +53,9 @@ def terminate_lease(doc, terminated_date):
 def make_sales_invoice_scheduler():
 	try:
 		lease_list = frappe.get_all("Lease", filters=[['enabled', '=', 1], ['docstatus', '=', 1]])
-		total_unit_amount = 0
 		for lease in lease_list:
 			try:
+				total_unit_amount = 0
 				doc = frappe.get_doc('Lease', lease.name)
 				total_unit_amount += sum(unit.yearly for unit in doc.choose_units)
 				for payment in doc.payments_scheduling:
@@ -81,32 +81,8 @@ def make_sales_invoice_scheduler():
 										itemRate = 0
 										if doc.ex_tax_on_add_char == 0:
 											itemRate = ((unit.yearly / total_unit_amount) * payment.rent_amount) + additional_charges
-											# itemRate = payment.rent_amount + additional_charges
-											# if doc.type == "Monthly":
-											# 	itemRate = unit.monthly + additional_charges
-											# elif doc.type == "Quarterly":
-											# 	itemRate = (unit.monthly * 3) + additional_charges
-											# elif doc.type == "Half Yearly":
-											# 	itemRate = unit.half_yearly + additional_charges
-											# elif doc.type == "Yearly":
-											# 	itemRate = unit.yearly + additional_charges
 										else:
 											itemRate = ((unit.yearly / total_unit_amount) * payment.rent_amount)
-											# itemRate = payment.rent_amount
-											# if doc.type == "Monthly":
-											# 	itemRate = unit.monthly
-											# elif doc.type == "Quarterly":
-											# 	itemRate = (unit.monthly * 3)
-											# elif doc.type == "Half Yearly":
-											# 	itemRate = unit.half_yearly
-											# elif doc.type == "Yearly":
-											# 	itemRate = unit.yearly
-
-										# income_account = frappe.get_last_doc("Account", {
-										# 	"company": doc.company,
-										# 	"account_type": "Income Account",
-										# 	"disabled": 0
-										# })
 
 										invoice.append("items", {
 											"item_code": doc.item,
