@@ -11,7 +11,7 @@ import json
 class Lease(Document):
 	def validate(self):
 		self.validate_increment_range()
-		# make_sales_invoice_scheduler()
+		make_sales_invoice_scheduler()
 
 	# Function to check for overlapping ranges and invalid range
 	def validate_increment_range(self):
@@ -80,7 +80,7 @@ def make_sales_invoice_scheduler():
 									for unit in doc.choose_units:
 										itemRate = 0
 										if doc.ex_tax_on_add_char == 0:
-											itemRate = ((unit.yearly / total_unit_amount) * payment.rent_amount) + additional_charges
+											itemRate = ((unit.yearly / total_unit_amount) * payment.total_amount) # total_amount <-- rent_amount + additional_charges + tax_amount
 										else:
 											itemRate = ((unit.yearly / total_unit_amount) * payment.rent_amount)
 
@@ -94,19 +94,19 @@ def make_sales_invoice_scheduler():
 											# "income_account": income_account.name	
 										})
 
+
 										if doc.ex_tax_on_add_char == 1:
-
-											additional_charges_item = get_additional_item()
-											invoice.append("items", {
-												"item_code": additional_charges_item.item_code,
-												"qty": 1,
-												"rate": additional_charges * (tenant.ownership / 100),
-												"cost_center": tenant.cost_center,
-												"properties": doc.property_name,
-												"unit_center": unit.unit_name,
-												# "income_account": income_account.name
-											})
-
+											if additional_charges > 0:
+												additional_charges_item = get_additional_item()
+												invoice.append("items", {
+													"item_code": additional_charges_item.item_code,
+													"qty": 1,
+													"rate": additional_charges * (tenant.ownership / 100),
+													"cost_center": tenant.cost_center,
+													"properties": doc.property_name,
+													"unit_center": unit.unit_name,
+													# "income_account": income_account.name
+												})
 											for lease_tax in doc.taxes:
 												itemRate = 0
 												for item in invoice.items:
