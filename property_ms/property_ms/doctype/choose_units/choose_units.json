@@ -70,6 +70,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Unit Name",
+   "link_filters": "[[\"Unit\",\"rented\",\"=\",0]]",
    "options": "Unit"
   },
   {
@@ -84,7 +85,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-11-18 13:23:04.922386",
+ "modified": "2025-03-12 14:02:40.792734",
  "modified_by": "Administrator",
  "module": "Property MS",
  "name": "Choose Units",

@@ -69,6 +69,7 @@
    "fieldname": "rent_start_date",
    "fieldtype": "Date",
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Rent Start Date",
    "reqd": 1
   },
@@ -200,6 +201,7 @@
    "fieldname": "rent_end_date",
    "fieldtype": "Date",
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Rent End Date",
    "reqd": 1
   },
@@ -330,7 +332,7 @@
    "link_fieldname": "custom_lease_reference"
   }
  ],
- "modified": "2025-02-13 10:47:17.058130",
+ "modified": "2025-03-12 13:54:50.766875",
  "modified_by": "Administrator",
  "module": "Property MS",
  "name": "Lease",
