@@ -11,7 +11,7 @@ import json
 class Lease(Document):
 	def validate(self):
 		self.validate_increment_range()
-		make_sales_invoice_scheduler()
+		# make_sales_invoice_scheduler()
 
 	# Function to check for overlapping ranges and invalid range
 	def validate_increment_range(self):
@@ -123,7 +123,7 @@ def make_sales_invoice_scheduler():
 													"tax_amount": (itemRate / 100) * lease_tax.rate,
 												})
 										else:
-											invoice = doc.taxes_and_charges
+											invoice.taxes_and_charges = doc.taxes_and_charges
 											for lease_tax in doc.taxes:
 												# itemRate = 0
 												# for item in invoice.items:
