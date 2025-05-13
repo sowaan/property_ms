@@ -122,6 +122,23 @@ def make_sales_invoice_scheduler():
 													"cost_center": lease_tax.cost_center,
 													"tax_amount": (itemRate / 100) * lease_tax.rate,
 												})
+										else:
+											invoice = doc.taxes_and_charges
+											for lease_tax in doc.taxes:
+												# itemRate = 0
+												# for item in invoice.items:
+												# 	if item.item_code == doc.item:
+												# 		itemRate = item.rate
+
+												# print((itemRate / 100) * lease_tax.rate, "Tax Amount \n\n\n")
+												invoice.append("taxes", {
+													"charge_type": lease_tax.charge_type,
+													"account_head": lease_tax.account_head,
+													"rate": lease_tax.rate,
+													"description": lease_tax.description,
+													"cost_center": lease_tax.cost_center,
+													# "tax_amount": (itemRate / 100) * lease_tax.rate,
+												})
 										
 									invoice.set_missing_values()
 									invoice.calculate_taxes_and_totals()
