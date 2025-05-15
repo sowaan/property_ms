@@ -105,7 +105,6 @@ def make_sales_invoice_scheduler():
 													"cost_center": tenant.cost_center,
 													"properties": doc.property_name,
 													"unit_center": unit.unit_name,
-													# "income_account": income_account.name
 												})
 											for lease_tax in doc.taxes:
 												itemRate = 0
@@ -113,24 +112,19 @@ def make_sales_invoice_scheduler():
 													if item.item_code == doc.item:
 														itemRate = item.rate
 
-												# print((itemRate / 100) * lease_tax.rate, "Tax Amount \n\n\n")
-												invoice.append("taxes", {
-													"charge_type": "Actual",
-													"account_head": lease_tax.account_head,
-													"rate": lease_tax.rate,
-													"description": lease_tax.description,
-													"cost_center": lease_tax.cost_center,
-													"tax_amount": (itemRate / 100) * lease_tax.rate,
-												})
+												tax_amount = (itemRate / 100) * lease_tax.rate
+												if tax_amount > 0:
+													invoice.append("taxes", {
+														"charge_type": "Actual",
+														"account_head": lease_tax.account_head,
+														"rate": lease_tax.rate,
+														"description": lease_tax.description,
+														"cost_center": lease_tax.cost_center,
+														"tax_amount": tax_amount
+													})
 										else:
 											invoice.taxes_and_charges = doc.taxes_and_charges
 											for lease_tax in doc.taxes:
-												# itemRate = 0
-												# for item in invoice.items:
-												# 	if item.item_code == doc.item:
-												# 		itemRate = item.rate
-
-												# print((itemRate / 100) * lease_tax.rate, "Tax Amount \n\n\n")
 												invoice.append("taxes", {
 													"charge_type": lease_tax.charge_type,
 													"account_head": lease_tax.account_head,
