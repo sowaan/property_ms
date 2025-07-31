@@ -137,9 +137,9 @@ fixtures = [
 # override_doctype_class = {
 #	"ToDo": "custom_app.overrides.CustomToDo"
 # }
-override_doctype_class = {
- 	"Payroll Entry": "property_ms.property_ms.overrides.override_payroll_entry.OverridePayrollEntry"
-}
+# override_doctype_class = {
+#  	"Payroll Entry": "property_ms.property_ms.overrides.override_payroll_entry.OverridePayrollEntry"
+# }
 # Document Events
 # ---------------
 # Hook on document methods and events
