@@ -137,6 +137,10 @@ fixtures = [
 # override_doctype_class = {
 #	"ToDo": "custom_app.overrides.CustomToDo"
 # }
+override_doctype_class = {
+	"Journal Entry": "property_ms.property_ms.overrides.override_journal_entry.OverrideJournalEntry",
+}
+
 # override_doctype_class = {
 #  	"Payroll Entry": "property_ms.property_ms.overrides.override_payroll_entry.OverridePayrollEntry"
 # }
