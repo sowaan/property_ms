@@ -83,7 +83,10 @@
   "longitude",
   "latitude",
   "column_break_onin",
-  "map"
+  "map",
+  "images_tab",
+  "image_gallery",
+  "property_images"
  ],
  "fields": [
   {
@@ -492,11 +495,29 @@
    "label": "Ownership",
    "options": "Property Owner",
    "reqd": 1
+  },
+  {
+   "fieldname": "images_tab",
+   "fieldtype": "Tab Break",
+   "label": "Images"
+  },
+  {
+   "fieldname": "property_images",
+   "fieldtype": "Table",
+   "label": "Property Images",
+   "options": "Property Image Item"
+  },
+  {
+   "fieldname": "image_gallery",
+   "fieldtype": "HTML",
+   "label": "Image Gallery",
+   "read_only": 1
   }
  ],
+ "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-08-08 10:36:31.000310",
+ "modified": "2025-10-24 11:47:28.816207",
  "modified_by": "Administrator",
  "module": "Property MS",
  "name": "Properties",
@@ -516,6 +537,7 @@
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "search_fields": "property_name",
  "sort_field": "modified",
  "sort_order": "DESC",
