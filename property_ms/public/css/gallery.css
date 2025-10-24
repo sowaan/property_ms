@@ -1,0 +1,86 @@
+/* =====================================
+   PropertyMS Facebook-style Gallery
+   Works with PhotoSwipe Lightbox
+   ===================================== */
+
+.pswp-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.pswp-gallery .image-box {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  flex-grow: 1;
+  cursor: pointer;
+}
+
+.pswp-gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.pswp-gallery .image-box:hover img {
+  transform: scale(1.05);
+}
+
+/* Layout rules for Facebook-style grid */
+.pswp-gallery.one .image-box {
+  width: 100%;
+  height: 380px;
+}
+
+.pswp-gallery.two .image-box {
+  width: calc(50% - 3px);
+  height: 260px;
+}
+
+.pswp-gallery.three .image-box:nth-child(1),
+.pswp-gallery.three .image-box:nth-child(2) {
+  width: calc(50% - 3px);
+  height: 160px;
+}
+.pswp-gallery.three .image-box:nth-child(3) {
+  width: 100%;
+  height: 200px;
+}
+
+.pswp-gallery.four .image-box {
+  width: calc(50% - 3px);
+  height: 180px;
+}
+
+.pswp-gallery.more .image-box {
+  width: calc(50% - 3px);
+  height: 180px;
+}
+
+/* Overlay for +X more */
+.pswp-gallery .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 32px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Optional: Caption under gallery */
+.pswp-gallery .title {
+  text-align: center;
+  font-size: 13px;
+  color: #555;
+  margin-top: 6px;
+}
