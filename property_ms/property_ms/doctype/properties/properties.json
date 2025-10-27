@@ -85,8 +85,8 @@
   "column_break_onin",
   "map",
   "images_tab",
-  "image_gallery",
-  "property_images"
+  "property_images",
+  "image_gallery"
  ],
  "fields": [
   {
@@ -517,7 +517,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-24 11:47:28.816207",
+ "modified": "2025-10-27 11:15:04.572601",
  "modified_by": "Administrator",
  "module": "Property MS",
  "name": "Properties",
